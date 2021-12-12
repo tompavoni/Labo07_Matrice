@@ -19,13 +19,17 @@ using namespace std;
 
 int main() {
 
-   Vecteur v = {1, 1, 3};
-   Matrice m = {v, v, v};
+   Vecteur v = {1, 1, 7, 3};
+   Matrice m = {{1,2,3}, v, {1,3}, {}};
 
    cout << v << endl;
    cout << m << endl;
 
-   cout << estReguliere(m);
+   cout << estReguliere(m) << endl;
+
+   cout << minCol(m) << endl;
+
+   cout << sommeLigne(m) << endl;
 
    // Fin du programme
    cout << "\npresser ENTER pour quitter";
