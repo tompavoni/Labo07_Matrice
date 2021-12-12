@@ -1,13 +1,17 @@
 /*
------------------------------------------------------------------------------------
-Nom du fichier : <nom du fichier>.cpp
-Auteur(s) : Tomas Pavoni
-Date creation : <jj.mm.aaaa>
-Description : <à compléter>
-Remarque(s) : <à compléter>
-Compilateur : Mingw-w64 g++ 11.1.0
------------------------------------------------------------------------------------
+ ---------------------------------------------------------------------------
+ Fichier         : main.cpp
+ Auteur(s)       : Cédric Rosat - Thomas Pavoni
+ Date creation   : 08.12.2021
+
+ Description     : -
+
+ Remarque(s)     : -
+
+ Compilateur     : Mingw-w64 g++ 11.2.0
+ ---------------------------------------------------------------------------
 */
+
 #include <cstdlib>
 #include <iostream>
 #include <limits>
@@ -16,16 +20,6 @@ Compilateur : Mingw-w64 g++ 11.1.0
 #include "tab.h"
 
 using namespace std;
-
-void testMatriceReguliere(const Matrice& m) {
-	cout << "La matrice suivante : " << m
-	     << (estReguliere(m) ? " est reguliere" : " n'est pas reguliere") << endl;
-}
-
-void testMatriceCarree(const Matrice& m) {
-	cout << "La matrice suivante : " << m
-		  << (estCarree(m) ? " est carree" : " n'est pas carree") << endl;
-}
 
 int main() {
 	// -------------------------------------------------------------------------
@@ -42,59 +36,83 @@ int main() {
 								       {7, 8, 9}},
 	        matriceVide      = {},
 	        matrice          = {{1, 2, 3},
-										 {1, 3},
-								       {6, 7, 8, 9}};
-
-	cout << "Taille la plus petit de " << matrice << " = " << minCol(matrice) << endl;
+										 {1, 2, 1},
+										 {2, 5, 7, 1},
+										 {2, 2}};
 
 	// -------------------------------------------------------------------------
 	// Test de l'opérateur <<
 	// -------------------------------------------------------------------------
 
-	cout << "Affiche des vecteurs : " << endl
-	     << vecteur                   << endl
-		  << vecteurVide << endl       << endl
-		  << "Affiche des matrices : " << endl
-		  << matrice                   << endl
-		  << matriceVide << endl       << endl;
+	cout << "===== Operateur << ====="                            << endl
+	     << "Affiche des vecteurs au format (v1, v2, ..., vn) :"  << endl
+		  << vecteurVide                                           << endl
+		  << vecteur                                               << endl
+		  << endl
+		  << "Affiche des matrices au format [(..), (..), (..)] :" << endl
+		  << matriceVide                                           << endl
+		  << matrice                                               << endl
+		  << endl;
 
 	// -------------------------------------------------------------------------
 	// Test de la fonction estCarree
 	// -------------------------------------------------------------------------
 
-	cout << "Indique si la matrice est carree : " << endl;
-	testMatriceCarree(matriceReguliere);
-	testMatriceCarree(matriceCarree);
-	testMatriceCarree(matriceVide);
-	testMatriceCarree(matrice);
-	cout << endl;
+	cout << "===== Fonction estCarree(...) ====="                   << endl
+	     << "Indique si la matrice est carree :"                    << endl
+		  << matriceReguliere << testMatriceCarree(matriceReguliere) << endl
+		  << matriceCarree    << testMatriceCarree(matriceCarree)    << endl
+		  << matriceVide      << testMatriceCarree(matriceVide)      << endl
+		  << matrice          << testMatriceCarree(matrice)          << endl
+		  << endl;
 
 	// -------------------------------------------------------------------------
 	// Test de la fonction estReguliere
 	// -------------------------------------------------------------------------
 
-	cout << "Indique si la matrice est reguliere : " << endl;
-	testMatriceReguliere(matriceReguliere);
-	testMatriceReguliere(matriceCarree);
-	testMatriceReguliere(matriceVide);
-	testMatriceReguliere(matrice);
-	cout << endl;
+	cout << "===== Fonction estReguliere(...) ====="                   << endl
+	     << "Indique si la matrice est reguliere :"                    << endl
+	     << matriceReguliere << testMatriceReguliere(matriceReguliere) << endl
+		  << matriceCarree    << testMatriceReguliere(matriceCarree)    << endl
+		  << matriceVide      << testMatriceReguliere(matriceVide)      << endl
+		  << matrice          << testMatriceReguliere(matrice)          << endl
+	     << endl;
 
 	// -------------------------------------------------------------------------
 	// Test de la fonction minCol
 	// -------------------------------------------------------------------------
 
+	cout << "===== Fonction minCol(...) =====" << endl
+	     << "Matrice : " << matrice << endl
+	     << "Longueur de du plus petit vecteur de cette matrice : "
+	     << minCol(matrice) << endl << endl;
+
 	// -------------------------------------------------------------------------
 	// Test de la fonction sommeLigne
 	// -------------------------------------------------------------------------
+
+	cout << "===== Fonction sommeLigne(...) =====" << endl
+	     << "Matrice : " << matrice << endl
+	     << "Somme des éléments de chaque ligne de la matrice "
+	     << sommeLigne(matrice) << endl << endl;
 
 	// -------------------------------------------------------------------------
 	// Test de la fonction sommeColonne
 	// -------------------------------------------------------------------------
 
+	cout << "===== Fonction sommeColonne(...) =====" << endl
+		  << "Matrice : " << matrice << endl
+		  << "Somme des éléments de chaque ligne de la matrice "
+		  << sommeColonne(matrice) << endl << endl;
+
 	// -------------------------------------------------------------------------
 	// Test de la fonction vectSommeMin
 	// -------------------------------------------------------------------------
+
+	cout << "===== Fonction vectSommeMin(...) =====" << endl
+	     << "Matrice : " << matrice << endl
+	     << "Vecteur dont la somme des elements est la plus petite : "
+	     << (vectSommeMin(matrice)) << endl;
 
 	// -------------------------------------------------------------------------
 	// Test de la fonction shuffleMatrice

@@ -1,16 +1,16 @@
 /*
  ---------------------------------------------------------------------------
-Fichier         : tab.h
-Auteur(s)       : Cédric Rosat - Thomas Pavoni
-Date creation   : 08.12.2021
+ Fichier         : tab.h
+ Auteur(s)       : Cédric Rosat - Thomas Pavoni
+ Date creation   : 08.12.2021
 
-Description     : -
+ Description     : -
 
-Remarque(s)     : -
+ Remarque(s)     : -
 
-Modification(s) : -
+ Modification(s) : -
 
-Compilateur     : Mingw-w64 g++ 11.2.0
+ Compilateur     : Mingw-w64 g++ 11.2.0
  ---------------------------------------------------------------------------
 */
 

@@ -1,8 +1,28 @@
-//
-// Created by tomas on 08.12.2021.
-//
+/*
+ ---------------------------------------------------------------------------
+ Fichier         : annexe.h
+ Auteur(s)       : Cédric Rosat - Thomas Pavoni
+ Date creation   : 08.12.2021
+
+ Description     : -
+
+ Remarque(s)     : -
+
+ Modification(s) : -
+
+ Compilateur     : Mingw-w64 g++ 11.2.0
+ ---------------------------------------------------------------------------
+*/
 
 #ifndef LABO07_MATRICE_ANNEXE_H
+
+#include <string>
+#include "tab.h"
+
+std::string testMatriceReguliere(const Matrice& m);
+
+std::string testMatriceCarree(const Matrice& m);
+
 #define LABO07_MATRICE_ANNEXE_H
 
 #endif //LABO07_MATRICE_ANNEXE_H

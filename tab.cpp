@@ -1,16 +1,16 @@
 /*
  ---------------------------------------------------------------------------
-Fichier         : tab.cpp
-Auteur(s)       : Cédric Rosat - Thomas Pavoni
-Date creation   : 08.12.2021
+ Fichier         : tab.cpp
+ Auteur(s)       : Cédric Rosat - Thomas Pavoni
+ Date creation   : 08.12.2021
 
-Description     : -
+ Description     : -
 
-Remarque(s)     : -
+ Remarque(s)     : -
 
-Modification(s) : -
+ Modification(s) : -
 
-Compilateur     : Mingw-w64 g++ 11.2.0
+ Compilateur     : Mingw-w64 g++ 11.2.0
  ---------------------------------------------------------------------------
 */
 
@@ -23,9 +23,17 @@ Compilateur     : Mingw-w64 g++ 11.2.0
 
 using namespace std;
 
-bool plusPetit(const Vecteur& i, const Vecteur& j);
+//-----------------------------------------------------------------------------
+// Fonctions internes à la librairie (prototypes)
+//-----------------------------------------------------------------------------
+
+// Retourne true si le premier vecteur est plus petit que le second
+bool plusPetit(const Vecteur& v1, const Vecteur& v2);
 
 //-----------------------------------------------------------------------------
+// Fonctions publiques
+//-----------------------------------------------------------------------------
+
 ostream& operator<<(ostream& os, const Vecteur& v) {
    os << "(";
    for (Vecteur::const_iterator elem = v.begin(); elem != v.end(); ++elem) {
@@ -66,11 +74,9 @@ bool estReguliere(const Matrice& m) {
 					  [taille](const Vecteur& ligne){return ligne.size() == taille;});
 }
 
-
 //-----------------------------------------------------------------------------
 size_t minCol(const Matrice& m) {
    return (*min_element(m.begin(), m.end(), plusPetit)).size();
-
 }
 
 //-----------------------------------------------------------------------------
@@ -95,6 +101,17 @@ Vecteur sommeColonne(const Matrice& m) {
 
 }
 
-bool plusPetit(const Vecteur& i, const Vecteur& j) {
-	return i.size() < j.size();
+//-----------------------------------------------------------------------------
+Vecteur vectSommeMin(const Matrice& m) {
+	// Contient la somme des éléments de chaque ligne
+	Vecteur v = sommeLigne(m);
+	return m[(size_t) distance(v.begin(), min_element(v.begin(), v.end()))];
+}
+
+//-----------------------------------------------------------------------------
+// Fonctions internes à la librairie
+//-----------------------------------------------------------------------------
+
+bool plusPetit(const Vecteur& v1, const Vecteur& v2) {
+	return v1.size() < v2.size();
 }
