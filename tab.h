@@ -54,7 +54,7 @@ std::ostream& operator<<(std::ostream& os, const Matrice& m);
 /**
  * nom         : estCarree
  *
- * description : Vérifie si la matrice @param m est carée
+ * description : Vérifie si la matrice @param m est carrée
  *
  * @param
  * @param
@@ -91,7 +91,7 @@ bool estReguliere(const Matrice& m);
  * return
  * /!\
  */
-unsigned minCol(const Matrice& m);
+size_t minCol(const Matrice& m);
 
 /**
  * nom

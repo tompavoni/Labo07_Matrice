@@ -17,19 +17,88 @@ Compilateur : Mingw-w64 g++ 11.1.0
 
 using namespace std;
 
+void testMatriceReguliere(const Matrice& m) {
+	cout << "La matrice suivante : " << m
+	     << (estReguliere(m) ? " est reguliere" : " n'est pas reguliere") << endl;
+}
+
+void testMatriceCarree(const Matrice& m) {
+	cout << "La matrice suivante : " << m
+		  << (estCarree(m) ? " est carree" : " n'est pas carree") << endl;
+}
+
 int main() {
+	// -------------------------------------------------------------------------
+	// Vecteurs et matrices pour les tests de la librairie
+	// -------------------------------------------------------------------------
 
-   Vecteur v = {1, 1, 7, 3};
-   Matrice m = {{1,2,3}, v, {1,3}, {}};
+   Vecteur vecteur          =  {1, 1, 3},
+	        vecteurVide      =  {};
 
-   cout << v << endl;
-   cout << m << endl;
+   Matrice matriceReguliere = {{1, 2, 3},
+								       {4, 5, 6}},
+	        matriceCarree    = {{1, 2, 3},
+										 {4, 5, 6},
+								       {7, 8, 9}},
+	        matriceVide      = {},
+	        matrice          = {{1, 2, 3},
+										 {1, 3},
+								       {6, 7, 8, 9}};
 
-   cout << estReguliere(m) << endl;
+	cout << "Taille la plus petit de " << matrice << " = " << minCol(matrice) << endl;
 
-   cout << minCol(m) << endl;
+	// -------------------------------------------------------------------------
+	// Test de l'opérateur <<
+	// -------------------------------------------------------------------------
 
-   cout << sommeLigne(m) << endl;
+	cout << "Affiche des vecteurs : " << endl
+	     << vecteur                   << endl
+		  << vecteurVide << endl       << endl
+		  << "Affiche des matrices : " << endl
+		  << matrice                   << endl
+		  << matriceVide << endl       << endl;
+
+	// -------------------------------------------------------------------------
+	// Test de la fonction estCarree
+	// -------------------------------------------------------------------------
+
+	cout << "Indique si la matrice est carree : " << endl;
+	testMatriceCarree(matriceReguliere);
+	testMatriceCarree(matriceCarree);
+	testMatriceCarree(matriceVide);
+	testMatriceCarree(matrice);
+	cout << endl;
+
+	// -------------------------------------------------------------------------
+	// Test de la fonction estReguliere
+	// -------------------------------------------------------------------------
+
+	cout << "Indique si la matrice est reguliere : " << endl;
+	testMatriceReguliere(matriceReguliere);
+	testMatriceReguliere(matriceCarree);
+	testMatriceReguliere(matriceVide);
+	testMatriceReguliere(matrice);
+	cout << endl;
+
+	// -------------------------------------------------------------------------
+	// Test de la fonction minCol
+	// -------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------
+	// Test de la fonction sommeLigne
+	// -------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------
+	// Test de la fonction sommeColonne
+	// -------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------
+	// Test de la fonction vectSommeMin
+	// -------------------------------------------------------------------------
+
+	// -------------------------------------------------------------------------
+	// Test de la fonction shuffleMatrice
+	// -------------------------------------------------------------------------
 
    // Fin du programme
    cout << "\npresser ENTER pour quitter";
