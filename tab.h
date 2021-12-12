@@ -8,6 +8,11 @@ Date creation    : 08.12.2021
                    vecteurs et de matrices.
 
  Remarque(s)     : Fichier en lien avec le labo07.
+                   Une matrice de vecteurs vides est considérée comme vide.
+                   "En mathématiques, une matrice vide est définie comme une matrice
+                    dont l'une des dimensions m ou n est nulle ; il s'agit donc de
+                    matrices de dimensions m*0, 0*n ou bien 0*0"
+                    https://fr.wikipedia.org/wiki/Matrice_vide
 
  Modification(s) : -
 
@@ -25,7 +30,8 @@ using Vecteur = std::vector<Type>;
 using Matrice = std::vector<Vecteur>;
 
 /**
- * nom         : <<
+ * @overload
+ * nom         : operator<<
  *
  * description : Affiche un Vecteur au format (v1, v2, …, vn)
  *
@@ -37,7 +43,8 @@ using Matrice = std::vector<Vecteur>;
 std::ostream& operator<<(std::ostream& os, const Vecteur& v);
 
 /**
- * nom         : <<
+ * @overload
+ * nom         : operator<<
  *
  * description : Affiche une Matrice au format [(..),(..),(..)]
  *

@@ -6,7 +6,11 @@ Date creation    : 08.12.2021
 
  Description     : Déclarations des fonctions de la librairie tab.h.
 
- Remarque(s)     : -
+ Remarque(s)     :  Une matrice de vecteurs vides est considérée comme vide.
+                    "En mathématiques, une matrice vide est définie comme une matrice
+                    dont l'une des dimensions m ou n est nulle ; il s'agit donc de
+                    matrices de dimensions m*0, 0*n ou bien 0*0"
+                    https://fr.wikipedia.org/wiki/Matrice_vide
 
  Modification(s) : -
 
@@ -31,12 +35,15 @@ using namespace std;
 // Retourne true si le premier vecteur est plus petit que le second
 bool estPlusPetit(const Vecteur& v1, const Vecteur& v2);
 
-//
+//TODO Ajouter le commentaire
 Vecteur addLignes(Vecteur v_vide, const Vecteur& v);
 
 // Retourne true si le premier vecteur se situe avant le deuxième dans un ordre
 // croissant
 bool estAvant(const Vecteur& v1, const Vecteur& v2);
+
+// Retourne true si la matrice est vide (voir remarques dans l'en-tête)
+bool estMatriceVide(const Matrice& m);
 
 //-----------------------------------------------------------------------------
 // Fonctions publiques
@@ -64,7 +71,7 @@ ostream& operator<<(ostream& os, const Matrice& m) {
 //-----------------------------------------------------------------------------
 bool estCarree(const Matrice& m) {
 	// Une matrice vide est carrée
-	if (m.empty()) {return true;}
+	if (estMatriceVide(m)) {return true;}
 
 	// Contrôle si la taille de chaque ligne == au nombre de lignes de la matrice
 	return all_of(m.begin(), m.end(),
@@ -74,7 +81,7 @@ bool estCarree(const Matrice& m) {
 //-----------------------------------------------------------------------------
 bool estReguliere(const Matrice& m) {
 	// Une matrice vide est régulière
-	if (m.empty()) {return true;}
+	if (estMatriceVide(m)) {return true;}
 
 	// Contrôle si toutes les lignes ont la même taille que la première
 	size_t taille = (*m.begin()).size();
@@ -84,36 +91,33 @@ bool estReguliere(const Matrice& m) {
 
 //-----------------------------------------------------------------------------
 size_t minCol(const Matrice& m) {
-	// Si la matrice est vide, retourne numeric_limits<size_t>::max()
-	//if (m.empty()) {return 0;}
+	// La taille des colones d'une matrice vide est de 0
+	if (estMatriceVide(m)) {return 0;}
 
 	// Cherche le vecteur avec la plus petite taille et retourne celle-ci
 	// return (*min_element(m.begin(), m.end(), estPlusPetit)).size();
-	(*min_element(m.begin(), m.end(), estPlusPetit));
-	return 0;
+	return (*min_element(m.begin(), m.end(), estPlusPetit)).size();
 }
 
 //-----------------------------------------------------------------------------
 size_t maxCol(const Matrice& m) {
-	// Si la matrice est vide, retourne numeric_limits<size_t>::max()
-	if (m.empty()) {return 0;}
+	// La taille des lignes d'une matrice vide est de 0
+	if (estMatriceVide(m)) {return 0;}
 
+	// Cherche le vecteur avec la plus grande taille et retourne celle-ci
    return (*max_element(m.begin(), m.end(), estPlusPetit)).size();
 }
 
 //-----------------------------------------------------------------------------
 Vecteur sommeLigne(const Matrice& m) {
-   /*Vecteur v;
-=======
    Vecteur v;
-	if (m.empty()) {return v;}
+	if (estMatriceVide(m)) {return v;}
 	// Égale la capacité du vecteur au nombre de lignes de la matrice
->>>>>>> Stashed changes
 	v.reserve(m.size());
    // Faire la somme de chaque ligne de la matrice et le rajouter dans le vecteur v
    for (const auto& ligne : m) {
       v.push_back(accumulate(ligne.begin(), ligne.end(), 0));
-   } */
+   }
    return accumulate(m.begin(), m.end(), Vecteur{}, addLignes);
 }
 
@@ -138,7 +142,7 @@ Vecteur sommeColonne(const Matrice& m) {
 Vecteur vectSommeMin(const Matrice& m) {
 	// Contient la somme des éléments de chaque ligne
 	Vecteur v = sommeLigne(m);
-	if (m.empty()) {return v;}
+	if (estMatriceVide(m)) {return v;}
 	// Égale la capacité du vecteur au nombre de lignes de la matrice
 	v.reserve(m.size());
 
@@ -180,5 +184,11 @@ bool estAvant(const Vecteur& v1, const Vecteur& v2) {
 
 //-----------------------------------------------------------------------------
 bool estMatriceVide(const Matrice& m) {
-	if (m.empty());
+	// Une matrice avec aucun contenu est considérée comme vide
+	if (m.empty()) {return true;}
+
+	// Une matrice dont le contenu des lignes est vide est aussi considérée comme vide
+	return all_of(m.begin(), m.end(), [](const Vecteur& v){return v.empty();});
 }
+
+//-----------------------------------------------------------------------------
