@@ -122,22 +122,31 @@ int main() {
 	     << "Vecteur dont la somme des elements est la plus petite : "
 	     << (vectSommeMin(matrice)) << endl;
 
+   // -------------------------------------------------------------------------
+   // Test de la fonction sortMatrice
+   // -------------------------------------------------------------------------
+   cout << "===== Fonction sortMatrice(...) ====="                 << endl
+	     << "Trie dans l'ordre croissant en fonction de l'élément "
+			  "min d'un vecteur"                                      << endl
+        << "Matrice avant tri : " << matrice                       << endl;
+
+   sortMatrice(matrice);
+
+   cout << "Matrice triee : "     << matrice                       << endl;
+
 	// -------------------------------------------------------------------------
 	// Test de la fonction shuffleMatrice
 	// -------------------------------------------------------------------------
 
-   // -------------------------------------------------------------------------
-   // Test de la fonction shuffleMatrice
-   // -------------------------------------------------------------------------
-   cout << "===== Fonction sortMatrice(...) =====" << endl
-        << "Matrice : " << matrice << "Matrice triee : " << endl;
+	cout << "===== Fonction shuffleMatrice(...) ====="                       << endl
+	     << "Mélange les vecteurs de la matrice sans alterer les vecteurs :" << endl
+		  << "Matrice avant shuffle : " << matrice                            << endl;
 
-   sortMatrice(matrice);
-   cout << matrice << endl;
+	shuffleMatrice(matrice);
 
+	cout << "Matrice apres shuffle : " << matrice                            << endl;
 
-   // Fin du programme
-   cout << "\npresser ENTER pour quitter";
-   cin.ignore(numeric_limits<streamsize>::max(), '\n'); // vider le buffer
+	finProgramme();
+
    return EXIT_SUCCESS;
 }

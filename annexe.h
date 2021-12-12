@@ -15,14 +15,17 @@
 */
 
 #ifndef LABO07_MATRICE_ANNEXE_H
+#define LABO07_MATRICE_ANNEXE_H
 
 #include <string>
 #include "tab.h"
 
+void viderBuffer();
+
+void finProgramme();
+
 std::string testMatriceReguliere(const Matrice& m);
 
 std::string testMatriceCarree(const Matrice& m);
-
-#define LABO07_MATRICE_ANNEXE_H
 
 #endif //LABO07_MATRICE_ANNEXE_H

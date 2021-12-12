@@ -167,7 +167,7 @@ Vecteur vectSommeMin(const Matrice& m);
  * return
  * /!\
  */
-void shuffleMatrice(const Matrice& m);
+void shuffleMatrice(Matrice& m);
 
 /**
  * nom

@@ -15,9 +15,11 @@ Date creation   : 08.12.2021
 */
 
 #include <cstdlib>   //
-#include <iostream>  // Affichage dans la console
+#include <iostream>  // ostream
 #include <algorithm> //
-#include <numeric>   //
+#include <numeric>   // accumulate
+#include <random>    // default_random_engine
+#include <chrono>    // chrono::system_clock
 
 #include "tab.h"
 
@@ -29,13 +31,12 @@ using namespace std;
 
 // Retourne true si le premier vecteur est plus petit que le second
 bool estPlusPetit(const Vecteur& v1, const Vecteur& v2);
-//-----------------------------------------------------------------------------
 
 // Retourne true si le premier vecteur se situe avant le deuxième dans un ordre
 // croissant
 bool estAvant(const Vecteur& v1, const Vecteur& v2);
-//-----------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------
 // Fonctions publiques
 //-----------------------------------------------------------------------------
 
@@ -81,6 +82,7 @@ bool estReguliere(const Matrice& m) {
 
 //-----------------------------------------------------------------------------
 size_t minCol(const Matrice& m) {
+	// Cherche le vecteur avec la plus petite taille et retourne celle-ci
    return (*min_element(m.begin(), m.end(), estPlusPetit)).size();
 }
 
@@ -92,6 +94,8 @@ size_t maxCol(const Matrice& m) {
 //-----------------------------------------------------------------------------
 Vecteur sommeLigne(const Matrice& m) {
    Vecteur v;
+	v.reserve(m.size());
+
    for (const auto& ligne : m) {
       v.push_back(accumulate(ligne.begin(), ligne.end(), 0));
    }
@@ -118,21 +122,29 @@ Vecteur sommeColonne(const Matrice& m) {
 Vecteur vectSommeMin(const Matrice& m) {
 	// Contient la somme des éléments de chaque ligne
 	Vecteur v = sommeLigne(m);
+	v.reserve(m.size());
+
+	// Calcule la position de l'élément dont la somme est la plus petite et
+	// retourne le vecteur de la matrice se trouvant à cette position
 	return m[(size_t) distance(v.begin(), min_element(v.begin(), v.end()))];
 }
 
 //-----------------------------------------------------------------------------
-void shuffleMatrice(const Matrice& m) {
-
+void shuffleMatrice(Matrice& m) {
+	// Seed basée sur l'heure
+	auto seed = (unsigned) chrono::system_clock::now().time_since_epoch().count();
+	shuffle(m.begin(), m.end(), default_random_engine(seed));
 }
 
 //-----------------------------------------------------------------------------
 void sortMatrice(Matrice& m) {
-   stable_sort(m.begin(), m.end(), estAvant);
+	stable_sort(m.begin(), m.end(), estAvant);
 }
 
+//-----------------------------------------------------------------------------
 // Fonctions internes à la librairie
 //-----------------------------------------------------------------------------
+
 bool estPlusPetit(const Vecteur& v1, const Vecteur& v2) {
 	return v1.size() < v2.size();
 }

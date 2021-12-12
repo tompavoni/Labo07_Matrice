@@ -14,9 +14,19 @@
  ---------------------------------------------------------------------------
 */
 
+#include <iostream>
 #include "annexe.h"
 
 using namespace std;
+
+void viderBuffer() {
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+void finProgramme() {
+	cout << "Veuillez presser ENTREE pour quitter le programme...";
+	viderBuffer();
+}
 
 string testMatriceReguliere(const Matrice& m) {
 	return estReguliere(m) ? " est reguliere" : " n'est pas reguliere";
