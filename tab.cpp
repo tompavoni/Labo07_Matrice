@@ -35,8 +35,11 @@ using namespace std;
 // Retourne true si le premier vecteur est plus petit que le second
 bool estPlusPetit(const Vecteur& v1, const Vecteur& v2);
 
-//TODO Ajouter le commentaire
-Vecteur addLignes(Vecteur v_vide, const Vecteur& v);
+// Retourne un vecteur contenant la somme de chaque ligne
+Vecteur addLignes(Vecteur vecteur, const Vecteur& v);
+
+// Retourne un vecteur contenant la somme de chaque colonne
+Vecteur addColonnes(Vecteur v1, Vecteur v2);
 
 // Retourne true si le premier vecteur se situe avant le deuxième dans un ordre
 // croissant
@@ -110,32 +113,20 @@ size_t maxCol(const Matrice& m) {
 
 //-----------------------------------------------------------------------------
 Vecteur sommeLigne(const Matrice& m) {
-   Vecteur v;
-	if (estMatriceVide(m)) {return v;}
-	// Égale la capacité du vecteur au nombre de lignes de la matrice
-	v.reserve(m.size());
-   // Faire la somme de chaque ligne de la matrice et le rajouter dans le vecteur v
-   for (const auto& ligne : m) {
-      v.push_back(accumulate(ligne.begin(), ligne.end(), 0));
-   }
+   // Si la matrice est vide, on retourne un vecteur vide
+	if (estMatriceVide(m)) {return Vecteur {};}
+   // Faire la somme de chaque ligne de la matrice et le rajouter dans le vecteur
+   // vide
    return accumulate(m.begin(), m.end(), Vecteur{}, addLignes);
 }
 
 //-----------------------------------------------------------------------------
 Vecteur sommeColonne(const Matrice& m) {
-   Vecteur v;
-   size_t col = 0;
-   // Faire la somme de chaque colonne de la matrice et le rajouter dans le vecteur v
-   while (col != maxCol(m)) {
-      int sommeCol = 0;
-      for (const auto & ligne : m) {
-         if (col >= ligne.size()) continue;// Si l'élément n'existe pas il est ignoré
-         sommeCol += ligne.at(col);
-      }
-      v.push_back(sommeCol);
-      col++;
-   }
-   return v;
+   // Si la matrice est vide, on retourne un vecteur vide
+   if (m.empty()) {return Vecteur {};}
+   // Faire la somme de chaque colonne de la matrice et le rajouter dans le vecteur
+   // vide
+   return accumulate(m.begin(), m.end(), Vecteur{}, addColonnes);
 }
 
 //-----------------------------------------------------------------------------
@@ -172,9 +163,18 @@ bool estPlusPetit(const Vecteur& v1, const Vecteur& v2) {
 }
 
 //-----------------------------------------------------------------------------
-Vecteur addLignes(Vecteur v_vide, const Vecteur& v) {
-   v_vide.push_back(accumulate(v.begin(), v.end(), 0));
-   return v_vide;
+Vecteur addLignes(Vecteur vecteur, const Vecteur& v) {
+   vecteur.push_back(accumulate(v.begin(), v.end(), 0));
+   return vecteur;
+}
+
+//-----------------------------------------------------------------------------
+Vecteur addColonnes(Vecteur v1, Vecteur v2) {
+   if(v1.size() < v2.size()) {
+      v1.resize(v2.size());
+   }
+   transform(v2.begin(), v2.end(), v1.begin(), v1.begin(), std::plus<>());
+   return v1;
 }
 
 //-----------------------------------------------------------------------------
