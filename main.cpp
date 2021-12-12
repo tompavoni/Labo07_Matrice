@@ -1,23 +1,30 @@
 /*
  ---------------------------------------------------------------------------
  Fichier         : main.cpp
- Auteur(s)       : Cédric Rosat - Thomas Pavoni
+ Auteur(s)       : Cédric Rosat - Tomas Pavoni
  Date creation   : 08.12.2021
 
- Description     : -
+ Description     : Ce programme nous permet de tester le bon fonctionnement de toutes
+                   les fonctions de la libraire tab.h.
+                   2 vecteurs et 4 matrices sont initialisés afin de pouvoir
+                   tester le maximum de cas possibles.
+                   Une fois le programme lancé, tous les résultats des tests
+                   s'afficheront sur la console.
 
- Remarque(s)     : -
+ Remarque(s)     : Aucune valeur n'a besoin d'être saisie par l'utilisateur.
+                   Une matrice vide est réputée être carrée et régulière.
+                   Les éléments absents (matrice irrégulière) sont simplement
+                   ignorés.
 
  Compilateur     : Mingw-w64 g++ 11.2.0
  ---------------------------------------------------------------------------
 */
 
 #include <cstdlib>
-#include <iostream>
-#include <limits>
+#include <iostream> // Affichage console
 
+#include "tab.h"    // Manipulation vecteurs/matrices
 #include "annexe.h"
-#include "tab.h"
 
 using namespace std;
 

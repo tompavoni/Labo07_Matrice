@@ -1,18 +1,13 @@
 /*
  ---------------------------------------------------------------------------
-<<<<<<< Updated upstream
- Fichier         : tab.h
- Auteur(s)       : Cédric Rosat - Thomas Pavoni
- Date creation   : 08.12.2021
-=======
-Fichier         : tab.h
-Auteur(s)       : Cédric Rosat - Tomas Pavoni
-Date creation   : 08.12.2021
->>>>>>> Stashed changes
+Fichier          : tab.h
+Auteur(s)        : Cédric Rosat - Tomas Pavoni
+Date creation    : 08.12.2021
 
- Description     : -
+ Description     : Initialisations de fonctions utiles à la manipulation de
+                   vecteurs et de matrices.
 
- Remarque(s)     : -
+ Remarque(s)     : Fichier en lien avec le labo07.
 
  Modification(s) : -
 
@@ -23,37 +18,33 @@ Date creation   : 08.12.2021
 #ifndef LABO07_MATRICE_TAB_H
 #define LABO07_MATRICE_TAB_H
 
-#include <vector>
+#include <vector> // Type Vecteur
 
 using Type = int;
 using Vecteur = std::vector<Type>;
 using Matrice = std::vector<Vecteur>;
 
 /**
- * nom
+ * nom         : <<
  *
- * description
+ * description : Affiche un Vecteur au format (v1, v2, …, vn)
  *
- * @param
- * @param
- * @param
+ * @param os   : Le flux de sortie
+ * @param v    : Le vecteur à afficher
  *
- * return
- * /!\
+ * return      : Le flux de sortie
  */
 std::ostream& operator<<(std::ostream& os, const Vecteur& v);
 
 /**
- * nom
+ * nom         : <<
  *
- * description
+ * description : Affiche une Matrice au format [(..),(..),(..)]
  *
- * @param
- * @param
- * @param
+ * @param os   : Le flux de sortie
+ * @param m    : La matrice à afficher
  *
- * return
- * /!\
+ * return      : Le flux de sortie
  */
 std::ostream& operator<<(std::ostream& os, const Matrice& m);
 
@@ -62,37 +53,33 @@ std::ostream& operator<<(std::ostream& os, const Matrice& m);
  *
  * description : Vérifie si la matrice @param m est carrée
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à verifier
  *
- * return
- * /!\
+ * return      : Un booléen : 1 si carrée, 0 si pas carrée
+ *
+ * /!\         : Une matrice vide est carrée
  */
 bool estCarree(const Matrice& m);
 
 /**
- * nom
+ * nom         : estReguliere
  *
- * description
+ * description : Vérifie si la matrice @param m est régulière
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à verifier
  *
- * return
- * /!\
+ * return      : Un booléen : 1 si régulière, 0 si pas régulière
+ *
+ * /!\         : Une matrice vide est régulière
  */
 bool estReguliere(const Matrice& m);
 
 /**
- * nom
+ * nom         : minCol
  *
- * description
+ * description : Retourne la longueur minimale des vecteurs d’une matrice
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à manipuler
  *
  * return
  * /!\
@@ -100,13 +87,11 @@ bool estReguliere(const Matrice& m);
 size_t minCol(const Matrice& m);
 
 /**
- * nom
+ * nom         : maxCol
  *
- * description
+ * description : Retourne la longueur maximale des vecteurs d’une matrice
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à manipuler
  *
  * return
  * /!\
@@ -114,72 +99,71 @@ size_t minCol(const Matrice& m);
 size_t maxCol(const Matrice& m);
 
 /**
- * nom
+ * nom         : sommeLigne
  *
- * description
+ * description : Retourne un vecteur contenant la somme des valeurs de chacune des
+ *               lignes
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à manipuler
  *
- * return
- * /!\
+ * return      : Un vecteur contenant la somme des valeurs de chacune des
+ *               lignes
  */
 Vecteur sommeLigne(const Matrice& m);
 
 /**
- * nom
+ * nom         : sommeColonne
  *
- * description
+ * description : Retourne un vecteur contenant la somme des valeurs dechacune des
+ *               colonnes
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à manipuler
  *
- * return
- * /!\
+ * return      : Un vecteur contenant la somme des valeurs de chacune des
+ *               colonnes
+ *
+ * /!\         : Les éléments absents (matrice irrégulière) sont simplement ignorés
  */
 Vecteur sommeColonne(const Matrice& m);
 
 /**
- * nom
+ * nom         : vectSommeMin
  *
- * description
+ * description : Retourne le vecteur d’une matrice dont la somme des valeurs est la
+ *               plus faible
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à manipuler
  *
- * return
- * /!\
+ * return      : Le vecteur d’une matrice dont la somme des valeurs est la
+ *               plus faible
+ *
+ * /!\         : Si plusieurs vecteurs présentent la même somme, la fonction
+ *               retourne celui d’indice le plus faible
  */
 Vecteur vectSommeMin(const Matrice& m);
 
 /**
- * nom
+ * nom         : shuffleMatrice
  *
- * description
+ * description : Mélange les vecteurs d’une matrice sans altérer les vecteurs
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à manipuler
  *
- * return
- * /!\
+ * return      : -
+ *
+ * /!\         : La seed du générateur est basée sur l’heure
  */
 void shuffleMatrice(Matrice& m);
 
 /**
- * nom
+ * nom         : sortMatrice
  *
- * description
+ * description : Trier dans l’ordre croissant une matrice en fonction de l’élément
+ *               min d’un vecteur
  *
- * @param
- * @param
- * @param
+ * @param m    : La matrice à manipuler
  *
- * return
- * /!\
+ * return      : -
  */
 void sortMatrice(Matrice& m);
 

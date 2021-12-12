@@ -4,7 +4,7 @@
  Auteur(s)       : Cédric Rosat - Thomas Pavoni
  Date creation   : 08.12.2021
 
- Description     : -
+ Description     : Déclarations des fonctions de la librairie annexe.h.
 
  Remarque(s)     : -
 
@@ -14,7 +14,9 @@
  ---------------------------------------------------------------------------
 */
 
-#include <iostream>
+#include <iostream> // Affichage console
+#include <limits>   // Vider buffer
+
 #include "annexe.h"
 
 using namespace std;

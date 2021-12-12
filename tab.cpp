@@ -1,10 +1,10 @@
 /*
  ---------------------------------------------------------------------------
-Fichier         : tab.cpp
-Auteur(s)       : Cédric Rosat - Tomas Pavoni
-Date creation   : 08.12.2021
+Fichier          : tab.cpp
+Auteur(s)        : Cédric Rosat - Tomas Pavoni
+Date creation    : 08.12.2021
 
- Description     : -
+ Description     : Déclarations des fonctions de la librairie tab.h.
 
  Remarque(s)     : -
 
@@ -16,7 +16,7 @@ Date creation   : 08.12.2021
 
 #include <cstdlib>   //
 #include <iostream>  // ostream
-#include <algorithm> //
+#include <algorithm> // min_element, max_element, stable_sort, shuffle, all_of
 #include <numeric>   // accumulate
 #include <random>    // default_random_engine
 #include <chrono>    // chrono::system_clock
@@ -31,6 +31,9 @@ using namespace std;
 
 // Retourne true si le premier vecteur est plus petit que le second
 bool estPlusPetit(const Vecteur& v1, const Vecteur& v2);
+
+//
+Vecteur addLignes(Vecteur v_vide, const Vecteur& v);
 
 // Retourne true si le premier vecteur se situe avant le deuxième dans un ordre
 // croissant
@@ -88,28 +91,30 @@ size_t minCol(const Matrice& m) {
 
 //-----------------------------------------------------------------------------
 size_t maxCol(const Matrice& m) {
+   // Cherche le vecteur avec la plus grande taille et retourne celle-ci
    return (*max_element(m.begin(), m.end(), estPlusPetit)).size();
 }
 
 //-----------------------------------------------------------------------------
 Vecteur sommeLigne(const Matrice& m) {
-   Vecteur v;
+   /*Vecteur v;
 	v.reserve(m.size());
-
+   // Faire la somme de chaque ligne de la matrice et le rajouter dans le vecteur v
    for (const auto& ligne : m) {
       v.push_back(accumulate(ligne.begin(), ligne.end(), 0));
-   }
-   return v;
+   } */
+   return accumulate(m.begin(), m.end(), Vecteur{}, addLignes);
 }
 
 //-----------------------------------------------------------------------------
 Vecteur sommeColonne(const Matrice& m) {
    Vecteur v;
    size_t col = 0;
+   // Faire la somme de chaque colonne de la matrice et le rajouter dans le vecteur v
    while (col != maxCol(m)) {
       int sommeCol = 0;
       for (const auto & ligne : m) {
-         if (col >= ligne.size()) continue;
+         if (col >= ligne.size()) continue;// Si l'élément n'existe pas il est ignoré
          sommeCol += ligne.at(col);
       }
       v.push_back(sommeCol);
@@ -138,15 +143,21 @@ void shuffleMatrice(Matrice& m) {
 
 //-----------------------------------------------------------------------------
 void sortMatrice(Matrice& m) {
+   // Tri basé sur l'ordre croissant des vecteurs
 	stable_sort(m.begin(), m.end(), estAvant);
 }
 
 //-----------------------------------------------------------------------------
 // Fonctions internes à la librairie
 //-----------------------------------------------------------------------------
-
 bool estPlusPetit(const Vecteur& v1, const Vecteur& v2) {
 	return v1.size() < v2.size();
+}
+
+//-----------------------------------------------------------------------------
+Vecteur addLignes(Vecteur v_vide, const Vecteur& v) {
+   v_vide.push_back(accumulate(v.begin(), v.end(), 0));
+   return v_vide;
 }
 
 //-----------------------------------------------------------------------------
