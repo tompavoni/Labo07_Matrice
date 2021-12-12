@@ -84,8 +84,17 @@ int main() {
 
 	cout << "===== Fonction minCol(...) =====" << endl
 	     << "Matrice : " << matrice << endl
-	     << "Longueur de du plus petit vecteur de cette matrice : "
+	     << "Longueur du plus petit vecteur de cette matrice : "
 	     << minCol(matrice) << endl << endl;
+
+   // -------------------------------------------------------------------------
+   // Test de la fonction maxCol
+   // -------------------------------------------------------------------------
+
+   cout << "===== Fonction maxCol(...) =====" << endl
+        << "Matrice : " << matrice << endl
+        << "Longueur du plus grand vecteur de cette matrice : "
+        << maxCol(matrice) << endl << endl;
 
 	// -------------------------------------------------------------------------
 	// Test de la fonction sommeLigne
@@ -101,9 +110,8 @@ int main() {
 	// -------------------------------------------------------------------------
 
 	cout << "===== Fonction sommeColonne(...) =====" << endl
-		  << "Matrice : " << matrice << endl
-		  << "Somme des éléments de chaque ligne de la matrice "
-		  << sommeColonne(matrice) << endl << endl;
+        << "Matrice : " << matrice << "Somme des colonnes : "
+        << sommeColonne(matrice) << endl;
 
 	// -------------------------------------------------------------------------
 	// Test de la fonction vectSommeMin
@@ -117,6 +125,16 @@ int main() {
 	// -------------------------------------------------------------------------
 	// Test de la fonction shuffleMatrice
 	// -------------------------------------------------------------------------
+
+   // -------------------------------------------------------------------------
+   // Test de la fonction shuffleMatrice
+   // -------------------------------------------------------------------------
+   cout << "===== Fonction sortMatrice(...) =====" << endl
+        << "Matrice : " << matrice << "Matrice triee : " << endl;
+
+   sortMatrice(matrice);
+   cout << matrice << endl;
+
 
    // Fin du programme
    cout << "\npresser ENTER pour quitter";

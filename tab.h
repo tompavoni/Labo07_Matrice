@@ -1,8 +1,14 @@
 /*
  ---------------------------------------------------------------------------
+<<<<<<< Updated upstream
  Fichier         : tab.h
  Auteur(s)       : Cédric Rosat - Thomas Pavoni
  Date creation   : 08.12.2021
+=======
+Fichier         : tab.h
+Auteur(s)       : Cédric Rosat - Tomas Pavoni
+Date creation   : 08.12.2021
+>>>>>>> Stashed changes
 
  Description     : -
 
@@ -105,6 +111,20 @@ size_t minCol(const Matrice& m);
  * return
  * /!\
  */
+size_t maxCol(const Matrice& m);
+
+/**
+ * nom
+ *
+ * description
+ *
+ * @param
+ * @param
+ * @param
+ *
+ * return
+ * /!\
+ */
 Vecteur sommeLigne(const Matrice& m);
 
 /**
@@ -161,7 +181,7 @@ void shuffleMatrice(const Matrice& m);
  * return
  * /!\
  */
-void sortMatrice(const Matrice& m);
+void sortMatrice(Matrice& m);
 
 
 #endif //LABO07_MATRICE_TAB_H

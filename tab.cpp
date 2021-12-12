@@ -1,8 +1,8 @@
 /*
  ---------------------------------------------------------------------------
- Fichier         : tab.cpp
- Auteur(s)       : Cédric Rosat - Thomas Pavoni
- Date creation   : 08.12.2021
+Fichier         : tab.cpp
+Auteur(s)       : Cédric Rosat - Tomas Pavoni
+Date creation   : 08.12.2021
 
  Description     : -
 
@@ -28,9 +28,14 @@ using namespace std;
 //-----------------------------------------------------------------------------
 
 // Retourne true si le premier vecteur est plus petit que le second
-bool plusPetit(const Vecteur& v1, const Vecteur& v2);
-
+bool estPlusPetit(const Vecteur& v1, const Vecteur& v2);
 //-----------------------------------------------------------------------------
+
+// Retourne true si le premier vecteur se situe avant le deuxième dans un ordre
+// croissant
+bool estAvant(const Vecteur& v1, const Vecteur& v2);
+//-----------------------------------------------------------------------------
+
 // Fonctions publiques
 //-----------------------------------------------------------------------------
 
@@ -76,29 +81,37 @@ bool estReguliere(const Matrice& m) {
 
 //-----------------------------------------------------------------------------
 size_t minCol(const Matrice& m) {
-   return (*min_element(m.begin(), m.end(), plusPetit)).size();
+   return (*min_element(m.begin(), m.end(), estPlusPetit)).size();
+}
+
+//-----------------------------------------------------------------------------
+size_t maxCol(const Matrice& m) {
+   return (*max_element(m.begin(), m.end(), estPlusPetit)).size();
 }
 
 //-----------------------------------------------------------------------------
 Vecteur sommeLigne(const Matrice& m) {
    Vecteur v;
-   for (Matrice::const_iterator ligne = m.begin(); ligne != m.end(); ligne++) {
-      v.push_back(accumulate((*ligne).begin(), (*ligne).end(), 0));
+   for (const auto& ligne : m) {
+      v.push_back(accumulate(ligne.begin(), ligne.end(), 0));
    }
-   //for_each(m.begin(), m.end(), v.push_back(accumulate()));
    return v;
 }
 
 //-----------------------------------------------------------------------------
 Vecteur sommeColonne(const Matrice& m) {
    Vecteur v;
-
-   /*for (Matrice::const_iterator ligne = m.begin(); ligne != m.end(); ligne++) {
-      v.push_back(accumulate((*ligne).begin(), (*ligne).end(), 0));
+   size_t col = 0;
+   while (col != maxCol(m)) {
+      int sommeCol = 0;
+      for (const auto & ligne : m) {
+         if (col >= ligne.size()) continue;
+         sommeCol += ligne.at(col);
+      }
+      v.push_back(sommeCol);
+      col++;
    }
-   */
    return v;
-
 }
 
 //-----------------------------------------------------------------------------
@@ -109,9 +122,22 @@ Vecteur vectSommeMin(const Matrice& m) {
 }
 
 //-----------------------------------------------------------------------------
+void shuffleMatrice(const Matrice& m) {
+
+}
+
+//-----------------------------------------------------------------------------
+void sortMatrice(Matrice& m) {
+   stable_sort(m.begin(), m.end(), estAvant);
+}
+
 // Fonctions internes à la librairie
 //-----------------------------------------------------------------------------
-
-bool plusPetit(const Vecteur& v1, const Vecteur& v2) {
+bool estPlusPetit(const Vecteur& v1, const Vecteur& v2) {
 	return v1.size() < v2.size();
+}
+
+//-----------------------------------------------------------------------------
+bool estAvant(const Vecteur& v1, const Vecteur& v2) {
+   return v1 < v2;
 }
