@@ -14,7 +14,6 @@ Date creation    : 08.12.2021
  ---------------------------------------------------------------------------
 */
 
-#include <cstdlib>   //
 #include <iostream>  // ostream
 #include <algorithm> // min_element, max_element, stable_sort, shuffle, all_of
 #include <numeric>   // accumulate
@@ -85,19 +84,31 @@ bool estReguliere(const Matrice& m) {
 
 //-----------------------------------------------------------------------------
 size_t minCol(const Matrice& m) {
+	// Si la matrice est vide, retourne numeric_limits<size_t>::max()
+	//if (m.empty()) {return 0;}
+
 	// Cherche le vecteur avec la plus petite taille et retourne celle-ci
-   return (*min_element(m.begin(), m.end(), estPlusPetit)).size();
+	// return (*min_element(m.begin(), m.end(), estPlusPetit)).size();
+	(*min_element(m.begin(), m.end(), estPlusPetit));
+	return 0;
 }
 
 //-----------------------------------------------------------------------------
 size_t maxCol(const Matrice& m) {
-   // Cherche le vecteur avec la plus grande taille et retourne celle-ci
+	// Si la matrice est vide, retourne numeric_limits<size_t>::max()
+	if (m.empty()) {return 0;}
+
    return (*max_element(m.begin(), m.end(), estPlusPetit)).size();
 }
 
 //-----------------------------------------------------------------------------
 Vecteur sommeLigne(const Matrice& m) {
    /*Vecteur v;
+=======
+   Vecteur v;
+	if (m.empty()) {return v;}
+	// Égale la capacité du vecteur au nombre de lignes de la matrice
+>>>>>>> Stashed changes
 	v.reserve(m.size());
    // Faire la somme de chaque ligne de la matrice et le rajouter dans le vecteur v
    for (const auto& ligne : m) {
@@ -127,6 +138,8 @@ Vecteur sommeColonne(const Matrice& m) {
 Vecteur vectSommeMin(const Matrice& m) {
 	// Contient la somme des éléments de chaque ligne
 	Vecteur v = sommeLigne(m);
+	if (m.empty()) {return v;}
+	// Égale la capacité du vecteur au nombre de lignes de la matrice
 	v.reserve(m.size());
 
 	// Calcule la position de l'élément dont la somme est la plus petite et
@@ -163,4 +176,9 @@ Vecteur addLignes(Vecteur v_vide, const Vecteur& v) {
 //-----------------------------------------------------------------------------
 bool estAvant(const Vecteur& v1, const Vecteur& v2) {
    return v1 < v2;
+}
+
+//-----------------------------------------------------------------------------
+bool estMatriceVide(const Matrice& m) {
+	if (m.empty());
 }

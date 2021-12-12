@@ -4,12 +4,16 @@
  Auteur(s)       : Cédric Rosat - Tomas Pavoni
  Date creation   : 08.12.2021
 
+<<<<<<< Updated upstream
  Description     : Ce programme nous permet de tester le bon fonctionnement de toutes
                    les fonctions de la libraire tab.h.
                    2 vecteurs et 4 matrices sont initialisés afin de pouvoir
                    tester le maximum de cas possibles.
                    Une fois le programme lancé, tous les résultats des tests
                    s'afficheront sur la console.
+=======
+ Description     : Programme de test pour la librairie tab.cpp
+>>>>>>> Stashed changes
 
  Remarque(s)     : Aucune valeur n'a besoin d'être saisie par l'utilisateur.
                    Une matrice vide est réputée être carrée et régulière.
@@ -42,10 +46,12 @@ int main() {
 										 {4, 5, 6},
 								       {7, 8, 9}},
 	        matriceVide      = {},
+		     matriceVectVide  = {{}, {}, {}},
 	        matrice          = {{1, 2, 3},
 										 {1, 2, 1},
 										 {2, 5, 7, 1},
-										 {2, 2}};
+										 {2, 2},
+										 {}};
 
 	// -------------------------------------------------------------------------
 	// Test de l'opérateur <<
@@ -89,8 +95,10 @@ int main() {
 
 	cout << "===== Fonction minCol(...) ====="                         << endl
 	     << "Retourne la longueur du plus petit vecteur de la matrice" << endl
-	     << "Matrice : " << matrice                                    << endl
+	     << "Matrice : "                        << matrice             << endl
 	     << "Longueur du plus petit vecteur : " << minCol(matrice)     << endl
+		  << "Matrice : "                        << matriceVide         << endl
+		  << "Longueur du plus petit vecteur : " << minCol(matriceVide) << endl
 		  << endl;
 
    // -------------------------------------------------------------------------
@@ -103,6 +111,14 @@ int main() {
         << "Longueur du plus grand vecteur : "
         << maxCol(matrice) << endl << endl;
 
+	cout << "===== Fonction maxCol(...) ====="                         << endl
+		  << "Retourne la longueur du plus grand vecteur de la matrice" << endl
+		  << "Matrice : "                        << matrice             << endl
+		  << "Longueur du plus grand vecteur : " << maxCol(matrice)     << endl
+		  << "Matrice : "                        << matriceVide         << endl
+		  << "Longueur du plus grand vecteur : " << maxCol(matriceVide) << endl
+		  << endl;
+
 	// -------------------------------------------------------------------------
 	// Test de la fonction sommeLigne
 	// -------------------------------------------------------------------------
@@ -110,8 +126,10 @@ int main() {
 	cout << "===== Fonction sommeLigne(...) ====="                    << endl
 	     << "Retourne un vecteur contenant la somme de chaque ligne "
 			  "de la matrice :"                                         << endl
-	     << "Matrice : " << matrice                                   << endl
+	     << "Matrice : "          << matrice                          << endl
 	     << "Somme des lignes : " << sommeLigne(matrice)              << endl
+		  << "Matrice : "          << matriceVide                      << endl
+		  << "Somme des lignes : " << sommeLigne(matriceVide)          << endl
 		  << endl;
 
 	// -------------------------------------------------------------------------
@@ -121,19 +139,23 @@ int main() {
 	cout << "===== Fonction sommeColonne(...) ====="                    << endl
 	     << "Retourne un vecteur contenant la somme de chaque colonne "
 			  "de la matrice :"                                           << endl
-        << "Matrice : " << matrice                                     << endl
+        << "Matrice : "            << matrice                          << endl
 		  << "Somme des colonnes : " << sommeColonne(matrice)            << endl
+		  << "Matrice : "            << matriceVide                      << endl
+		  << "Somme des colonnes : " << sommeColonne(matriceVide)        << endl
 		  << endl;
 
 	// -------------------------------------------------------------------------
 	// Test de la fonction vectSommeMin
 	// -------------------------------------------------------------------------
 
-	cout << "===== Fonction vectSommeMin(...) ====="                          << endl
+	cout << "===== Fonction vectSommeMin(...) ====="                     << endl
 	     << "Retourne le vecteur de la matrice dont la somme des "
-			  "elements de la ligne est la plus petite :"                       << endl
-	     << "Matrice : " << matrice                                           << endl
-	     << "Vecteur avec la plus petite somme : " << (vectSommeMin(matrice)) << endl
+			  "elements de la ligne est la plus petite :"                  << endl
+	     << "Matrice : "                  << matrice                     << endl
+	     << "Vecteur (somme minimale) : " << (vectSommeMin(matrice))     << endl
+		  << "Matrice : "                  << matriceVide                 << endl
+		  << "Vecteur (somme minimale) : " << (vectSommeMin(matriceVide)) << endl
 		  << endl;
 
    // -------------------------------------------------------------------------
@@ -142,11 +164,14 @@ int main() {
    cout << "===== Fonction sortMatrice(...) ====="                 << endl
 	     << "Trie dans l'ordre croissant en fonction de l'élément "
 			  "min d'un vecteur"                                      << endl
-        << "Matrice avant tri : " << matrice                       << endl;
+        << "Matrice 1 avant tri : " << matrice                     << endl
+		  << "Matrice 2 avant tri : " << matriceVide                 << endl;
 
    sortMatrice(matrice);
+	sortMatrice(matriceVide); // Teste le fonctionnement avec une matrice vide
 
-   cout << "Matrice triee : "     << matrice                       << endl
+   cout << "Matrice 1 apres tri : " << matrice     << endl
+	     << "Matrice 2 apres tri : " << matriceVide << endl
 	     << endl;
 
 	// -------------------------------------------------------------------------
@@ -155,23 +180,26 @@ int main() {
 
 	cout << "===== Fonction shuffleMatrice(...) ====="                       << endl
 	     << "Mélange les vecteurs de la matrice sans alterer les vecteurs :" << endl
-		  << "Matrice avant shuffle : " << matrice                            << endl;
+		  << "Matrice 1 avant shuffle : " << matrice                          << endl
+		  << "Matrice 2 avant shuffle : " << matriceVide                      << endl;
 
 	shuffleMatrice(matrice);
+	shuffleMatrice(matriceVide); // Teste le fonctionnement avec une matrice vide
 
-	cout << "Matrice apres shuffle : " << matrice                            << endl
+	cout << "Matrice 1 apres shuffle : " << matrice        << endl
+	     << "Matrice 2 apres shuffle : " << matriceVide    << endl
 	     << endl
-		  << "Trie a nouveau la matrice melangee : "                          << endl;
+		  << "Trie a nouveau la matrice 1 melangee : "      << endl;
 
 	sortMatrice(matrice);
 
-	cout << "Matrice triee : "     << matrice                       << endl
+	cout << "Matrice 1 triee : " << matrice << endl
 		  << endl;
 
 	// -------------------------------------------------------------------------
 	// Fin du programme
 	// -------------------------------------------------------------------------
 
-	finProgramme();
+	//finProgramme();
    return EXIT_SUCCESS;
 }
